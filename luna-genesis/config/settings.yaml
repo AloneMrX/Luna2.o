@@ -1,0 +1,36 @@
+app:
+  name: Luna Genesis
+  version: 0.3.0
+
+model:
+  backend: transformers # options: transformers, llama_cpp
+  model_id: mistralai/Mistral-7B-Instruct-v0.3
+  context_window: 4096
+  max_new_tokens: 256
+  temperature: 0.7
+  top_p: 0.9
+  quantization:
+    enabled: true
+    mode: 4bit # options: 4bit, 8bit, gguf
+  dtype: auto # auto, float16, bfloat16, float32
+
+deployment:
+  preferred_device: auto # auto, cpu, cuda
+  tensor_parallel_size: 1
+
+memory:
+  file_path: data/memory.json
+  max_entries: 1000
+
+vector_memory:
+  index_path: data/vector.index
+  docs_path: data/vector_docs.json
+  embedding_model: sentence-transformers/all-MiniLM-L6-v2
+
+agent:
+  rag_top_k: 3
+  max_steps: 5
+
+search:
+  endpoint: https://duckduckgo.com/html/
+  timeout_seconds: 10
